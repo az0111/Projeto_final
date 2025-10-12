@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_final/view/eventos.dart';
 import 'package:projeto_final/view/ingressos.dart';
-import 'package:projeto_final/view/localizar.dart' hide EventosVer, HomeScreen;
-import 'package:projeto_final/view/eventos_ver.dart'
-    hide HomeScreen, LocalizarEvento;
+import 'package:projeto_final/view/localizar.dart';
+import 'package:projeto_final/view/eventos_ver.dart';
 
 // A classe Transporte ainda não foi implementada o Placeholder é meramente ilustrativo.
 class PlaceholderPage5 extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_final/view/eventos.dart';
 import 'package:projeto_final/view/favoritos.dart';
 import 'package:projeto_final/view/ingressos.dart';
-import 'package:projeto_final/view/localizar.dart' hide HomeScreen;
+import 'package:projeto_final/view/localizar.dart';
 
 //A tela transporte ainda não foi implementada está classe é apenas um placeholder, meramente ilustrativa.
 class PlaceholderPage5 extends StatelessWidget {

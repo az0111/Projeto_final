@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_final/view/favoritos.dart';
 import 'package:projeto_final/view/ingressos.dart';
-import 'package:projeto_final/view/localizar.dart' hide EventosVer;
+import 'package:projeto_final/view/localizar.dart';
 import 'package:projeto_final/view/eventos_ver.dart';
 
 // A classe de transporte ainda não foi implementada estea é apenas uma placeholder, meramente para manter a estrutura.

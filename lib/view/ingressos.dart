@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_final/view/eventos.dart';
 import 'package:projeto_final/view/favoritos.dart';
-import 'package:projeto_final/view/localizar.dart' hide EventosVer, HomeScreen;
+import 'package:projeto_final/view/localizar.dart';
 import 'package:projeto_final/view/eventos_ver.dart';
 
 //A tela transporte ainda não foi implementada, com um placeholder simples meramente ilustrativo
