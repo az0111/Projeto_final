@@ -130,15 +130,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: () {
                       _controller.forgotPassword(_emailController.text);
-                      //  bool logged = _controller.login(user);
-
-                      // ScaffoldMessenger.of(context).showSnackBar(
-                      //SnackBar(
-                      //content: Text(
-                      // logged ? "Login bem-sucedido!" : "Falha no login!",
-                      //),
-                      // ),
-                      //);
 
                       Navigator.push(
                         context,

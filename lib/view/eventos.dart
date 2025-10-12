@@ -4,25 +4,20 @@ import 'package:projeto_final/view/ingressos.dart';
 import 'package:projeto_final/view/localizar.dart' hide EventosVer;
 import 'package:projeto_final/view/eventos_ver.dart';
 
-// =======================================================
-// VVVVVV IMPORTS DE PÁGINAS EXTERNAS VVVVVV
-// 
-// EX: import 'package:meu_projeto/view/ingressos_view.dart';
-// EX: import 'package:meu_projeto/view/favoritos_view.dart';
-//
-// Para fins de COMPILAÇÃO neste código, estou usando classes PlaceHolder.
-// VOCÊ DEVE SUBSTITUIR ESTES IMPORTS E CLASSES PELAS SUAS PÁGINAS REAIS.
-// =======================================================
+// A classe de transporte ainda não foi implementada estea é apenas uma placeholder, meramente para manter a estrutura.
+class PlaceholderPage5 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => const Scaffold(
+    backgroundColor: Colors.black,
+    body: Center(
+      child: Text(
+        'Tela de Transporte',
+        style: TextStyle(color: Colors.white, fontSize: 24),
+      ),
+    ),
+  );
+}
 
-// Placeholder para as classes que virão de fora (remova estas quando usar seus imports reais)
-/*class PlaceholderPage1 extends StatelessWidget { @override Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('Placeholder 1'))); }
-class PlaceholderPage2 extends StatelessWidget { @override Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('Placeholder 2'))); }
-class PlaceholderPage3 extends StatelessWidget { @override Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('Placeholder 3'))); }
-class PlaceholderPage4 extends StatelessWidget { @override Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('Placeholder 4'))); }
-class PlaceholderPage5 extends StatelessWidget { @override Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('Placeholder 5'))); }
-*/
-
-// Este é um modelo de dados simples (mantido)
 class Evento {
   final String titulo;
   final String subtitulo;
@@ -49,26 +44,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // 1. Variável de Estado: Qual item está selecionado. 
   int _selectedIndex = 0;
 
-  // =========================================================================================
-  // VVVVVV LOCAL ONDE VOCÊ DEVE INSERIR/TROCAR OS NOMES DAS SUAS CLASSES DE DESTINO VVVVVV
-  // =========================================================================================
   final List<WidgetBuilder> _navigationDestinations = [
-    (context) => HomeScreen(),    // Índice 0: HOME - Não usado para navegação.
-    (context) => Ingressos(), // Substitua PlaceholderPage1() pela sua classe de INGRESSOS
-    (context) => Favoritos(), // Substitua PlaceholderPage2() pela sua classe de FAVORITOS
-    (context) => LocalizarEvento(), // Substitua PlaceholderPage3() pela sua classe de LOCALIZAR
-    (context) => EventosVer(), // Substitua PlaceholderPage4() pela sua classe de EVENTOS
-    //(context) => PlaceholderPage5(), // Substitua PlaceholderPage5() pela sua classe de TRANSPORTE
+    (context) => HomeScreen(),
+    (context) => Ingressos(),
+    (context) => Favoritos(),
+    (context) => LocalizarEvento(),
+    (context) => EventosVer(),
+    (context) =>
+        PlaceholderPage5(), // Substitua PlaceholderPage5() pela sua classe de TRANSPORTE
   ];
-  // =========================================================================================
-  // ^^^^^^ TROQUE APENAS OS NOMES DE PlaceholderPageN() PELAS SUAS CLASSES IMPORTADAS ^^^^^^
-  // =========================================================================================
 
-
-  // Dados de Exemplo (Mantidos)
+  // Dados dos eventos
   final List<Evento> destaques = [
     Evento(
       titulo: 'JoãoRock',
@@ -109,8 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // 2. Lógica de Navegação
   void _onItemTapped(int index) {
-    if (index != 0) { // Se o botão clicado NÃO for o 'Home' (índice 0)
-      
+    if (index != 0) {
       // Implementa a navegação para uma NOVA TELA usando a classe mapeada em _navigationDestinations
       Navigator.push(
         context,
@@ -121,15 +108,12 @@ class _HomeScreenState extends State<HomeScreen> {
           _selectedIndex = 0;
         });
       });
-      
-    } else { // Se o botão clicado for o 'Home'
-      // Apenas garante que o item 'Home' esteja visualmente selecionado
+    } else {
       setState(() {
         _selectedIndex = index;
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: _buildAppBar(primaryRed),
-      
+
       // O corpo (body) permanece fixo na visualização HomeContent
       body: SingleChildScrollView(
         child: Padding(
@@ -148,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Conteúdo da Home (Mantido inalterado)
+              // Conteúdo da Home
               _buildSearchBar(),
               const SizedBox(height: 16.0),
               _buildCategoriesRow(categoryRed),
@@ -165,17 +149,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      
-      // 3. Rodapé de Navegação (Agora chamando a lógica de navegação)
+
+      // 3. Rodapé de Navegação
       bottomNavigationBar: _buildBottomNavBar(primaryRed),
     );
   }
 
-  // WIDGETS AUXILIARES (MANTIDOS INALTERADOS)
+  // WIDGETS AUXILIARES
   PreferredSize _buildAppBar(Color primaryRed) {
     // ...
     return PreferredSize(
-      preferredSize: const Size.fromHeight(80.0), 
+      preferredSize: const Size.fromHeight(80.0),
       child: Container(
         padding: const EdgeInsets.fromLTRB(16.0, 40.0, 16.0, 8.0),
         color: primaryRed,
@@ -209,8 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Image.asset(
                   'lib/image/logo.png',
-                  height: 30, 
-                  width: 50, 
+                  height: 30,
+                  width: 50,
                   fit: BoxFit.contain,
                 ),
 
@@ -318,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildDestaquesList(List<Evento> destaques) {
     // ...
     return SizedBox(
-      height: 250, 
+      height: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: destaques.length,
@@ -338,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildRoteirosList(List<Evento> roteiros) {
     // ...
     return SizedBox(
-      height: 300, 
+      height: 300,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: roteiros.length,
@@ -378,10 +362,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               AspectRatio(
                 aspectRatio: imageRatio,
-                child: Image.asset(
-                  evento.imagemAsset,
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(evento.imagemAsset, fit: BoxFit.cover),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -419,7 +400,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // 4. Rodapé de Navegação (BottomNavigationBar)
+  // 4. Rodapé de Navegação
   Widget _buildBottomNavBar(Color primaryRed) {
     return Container(
       decoration: BoxDecoration(
@@ -441,7 +422,7 @@ class _HomeScreenState extends State<HomeScreen> {
         type: BottomNavigationBarType.fixed,
 
         currentIndex: _selectedIndex,
-        
+
         // AQUI ESTÁ O GATILHO: QUANDO UM ITEM É TOCADO, CHAMA A LÓGICA DE NAVEGAÇÃO
         onTap: _onItemTapped,
 
@@ -449,7 +430,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.receipt), 
+            icon: Icon(Icons.receipt),
             label: 'Ingressos', // Índice 1
           ),
           BottomNavigationBarItem(

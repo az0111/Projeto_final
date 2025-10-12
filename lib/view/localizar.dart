@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
-// OBSERVAÇÃO: Os imports abaixo referenciam arquivos externos do seu projeto.
-// Eles foram mantidos, mas as classes não estão definidas neste arquivo.
 import 'package:projeto_final/view/eventos.dart';
 import 'package:projeto_final/view/favoritos.dart';
 import 'package:projeto_final/view/eventos_ver.dart';
 import 'package:projeto_final/view/ingressos.dart';
 
-// =======================================================
-// VVVVVV CLASSE PRINCIPAL: LocalizarEvento (Índice 3) VVVVVV
-// =======================================================
+// A tela transporte ainda não foi implementada no seu lugar se tem um placeholder, meramente ilustrativo
+class PlaceholderPage5 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => const Scaffold(
+    backgroundColor: Colors.black,
+    body: Center(
+      child: Text(
+        'Tela de Transporte',
+        style: TextStyle(color: Colors.white, fontSize: 24),
+      ),
+    ),
+  );
+}
 
 class LocalizarEvento extends StatefulWidget {
   @override
@@ -41,9 +49,6 @@ class _LocalizarEventoState extends State<LocalizarEvento> {
     if (index == _selectedIndex) return;
 
     if (index == 0) {
-      // Assumindo que HomeScreen() é a tela inicial para onde se volta.
-      // A navegação de volta para a Home deve ser tratada no widget principal (MainScreen ou similar)
-      // Aqui, faremos a navegação de substituição para manter o fluxo.
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: _navigationDestinations[index]),
@@ -68,20 +73,16 @@ class _LocalizarEventoState extends State<LocalizarEvento> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // Título "JOÃOROCK 20ANOS" com seta de voltar
             _buildEventTitleHeader(),
 
-            // Seção de Mapa e Direções
             _buildMapSection(),
 
             const SizedBox(height: 20.0),
 
-            // Seção Distância do Evento
             _buildDistanceCard(),
 
             const SizedBox(height: 20.0),
 
-            // Seção Opções de Transporte
             _buildTransportOptionsCard(),
 
             const SizedBox(height: 50.0),
@@ -108,7 +109,7 @@ class _LocalizarEventoState extends State<LocalizarEvento> {
                 const Icon(Icons.person, color: Colors.white, size: 28),
                 const SizedBox(width: 8.0),
                 const Text(
-                  'Localização do Evento', // Texto conforme a imagem
+                  'Localização do Evento',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -122,7 +123,7 @@ class _LocalizarEventoState extends State<LocalizarEvento> {
               children: <Widget>[
                 // Placeholder para a logo 'EVENTOON'
                 Image.asset(
-                  'lib/image/logo.png', // Assumindo o path
+                  'lib/image/logo.png',
                   height: 30,
                   width: 50,
                   fit: BoxFit.contain,
@@ -195,7 +196,6 @@ class _LocalizarEventoState extends State<LocalizarEvento> {
           width: double.infinity,
           height: double.infinity,
           errorBuilder: (context, error, stackTrace) => Container(
-            // CONSTRUTOR DE ERRO CORRIGIDO: Exibe o placeholder de mapa/direções
             color: Colors.grey[900],
             child: Row(
               children: [
@@ -425,39 +425,6 @@ class _LocalizarEventoState extends State<LocalizarEvento> {
       ),
     );
   }
-}
-
-// =======================================================
-// VVVVVV CLASSES AUXILIARES (DEFINIÇÕES FALTANTES) VVVVVV
-// OBS: Estas classes são placeholders ou modelos para evitar erros de compilação.
-// =======================================================
-
-// A classe HomeScreen está faltando, este é um placeholder
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => const Scaffold(
-    backgroundColor: Colors.black,
-    body: Center(
-      child: Text(
-        'Tela HOME (Placeholder)',
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      ),
-    ),
-  );
-}
-
-// Placeholder para Transporte (Índice 5)
-class PlaceholderPage5 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => const Scaffold(
-    backgroundColor: Colors.black,
-    body: Center(
-      child: Text(
-        'Tela de Transporte',
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      ),
-    ),
-  );
 }
 
 // O modelo de Evento foi mantido

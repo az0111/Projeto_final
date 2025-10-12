@@ -4,17 +4,7 @@ import 'package:projeto_final/view/favoritos.dart';
 import 'package:projeto_final/view/localizar.dart' hide EventosVer, HomeScreen;
 import 'package:projeto_final/view/eventos_ver.dart';
 
-// =======================================================
-// VVVVVV IMPORTS E PLACEHOLDERS DE PÁGINAS EXTERNAS VVVVVV
-//
-// NOTA: A classe 'Ingressos' é a tela atual (Índice 1).
-// Precisamos do Placeholder para 'Home' (Índice 0) e as outras.
-// Você deve substituir estas classes pelas suas telas reais.
-// =======================================================
-
-// Placeholder para a tela Home (Índice 0)
-
-// Placeholder para Transporte (Índice 5)
+//A tela transporte ainda não foi implementada, com um placeholder simples meramente ilustrativo
 class PlaceholderPage5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const Scaffold(
@@ -45,17 +35,15 @@ class Evento {
   });
 }
 
-// ============== A TELA DE VISUALIZAÇÃO (VIEW) AGORA É STATEFUL PARA O CONTADOR E NAVEGAÇÃO ==============
-
 class Ingressos extends StatefulWidget {
   Ingressos({super.key});
 
-  // Mantendo os dados do evento aqui para esta tela de detalhes
+  // Dados do evento aqui para esta tela de detalhes
   final Evento joaoRock = Evento(
     titulo: 'JOÃOROCK 20 ANOS',
-    subtitulo: '03 de Junho de 2024, 21 horas', // Data fictícia da imagem
+    subtitulo: '03 de Junho de 2024, 21 horas',
     local: 'Shopping Iguatemi, Ribeirão Preto, SP',
-    imagemAsset: 'lib/image/joaorock.png', // Deve ser o banner
+    imagemAsset: 'lib/image/joaorock.png',
     isDestaque: true,
   );
 
@@ -71,24 +59,21 @@ class _IngressosState extends State<Ingressos> {
   // Cor principal
   static const Color primaryRed = Color(0xFFC8372D);
 
-  // 1. Variável de Estado: Qual item está selecionado (para destacar o botão).
-  // Começamos em 1, pois esta é a tela de Ingressos.
   int _selectedIndex = 1;
 
   // 2. Mapeamento de Destinos para a navegação
   final List<WidgetBuilder> _navigationDestinations = [
-    (context) => HomeScreen(), // Índice 0: HOME
-    (context) =>
-        Ingressos(), // Índice 1: INGRESSOS (Para fechar e abrir novamente a tela, ou usar como destino base, mas não será navegável para si mesmo)
-    (context) => Favoritos(), // Índice 2: Favoritos
-    (context) => LocalizarEvento(), // Índice 3: Localizar
-    (context) => EventosVer(), // Índice 4: Eventos
-    (context) => PlaceholderPage5(), // Índice 5: Transporte
+    (context) => HomeScreen(),
+    (context) => Ingressos(),
+    (context) => Favoritos(),
+    (context) => LocalizarEvento(),
+    (context) => EventosVer(),
+    (context) => PlaceholderPage5(),
   ];
 
   // 3. Lógica de Navegação
   void _onItemTapped(int index) {
-    // Se o item clicado for o 'Ingressos' (index 1), não faz nada.
+    // Se o item clicado for o 'Ingressos', não faz nada.
     if (index == 1) {
       return;
     }
@@ -98,13 +83,6 @@ class _IngressosState extends State<Ingressos> {
     if (index == 0) {
       Navigator.pop(context);
     } else {
-      // Para todos os outros botões (Favoritos, Localizar, Eventos, Transporte)
-      // Navega para a NOVA TELA, substituindo a tela atual (Ingressos) por ela,
-      // para que o botão 'Voltar' leve à Home.
-
-      // Remove a tela Ingressos e insere a nova tela no lugar.
-      // Se a Home for a tela inicial (raiz), deve-se usar pushReplacement
-      // para ir de Ingressos para Favoritos, e o botão de voltar deve ir para Home.
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: _navigationDestinations[index]),
@@ -182,9 +160,7 @@ class _IngressosState extends State<Ingressos> {
     );
   }
 
-  // ============== WIDGETS AUXILIARES PARA PARTES ESPECÍFICAS DA TELA ==============
-
-  // A AppBar (Barra superior) - Mantida
+  // A AppBar (Barra superior)
   PreferredSize _buildAppBar(Color primaryRed) {
     // ...
     return PreferredSize(
@@ -214,7 +190,7 @@ class _IngressosState extends State<Ingressos> {
               children: [
                 // Ícone EVENTOON (Logo da imagem)
                 Image.asset(
-                  'lib/image/logo.png', // Manter o caminho
+                  'lib/image/logo.png',
                   height: 30,
                   width: 50,
                   fit: BoxFit.contain,
@@ -234,7 +210,7 @@ class _IngressosState extends State<Ingressos> {
     );
   }
 
-  // Título e Banner do Evento (Simulação da Imagem) - Mantida
+  // Título e Banner do Evento (Simulação da Imagem)
   Widget _buildEventHeader() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -268,11 +244,10 @@ class _IngressosState extends State<Ingressos> {
 
         // Imagem/Banner
         Image.asset(
-          widget.joaoRock.imagemAsset, // Use o asset do João Rock
+          widget.joaoRock.imagemAsset,
           fit: BoxFit.cover,
           width: double.infinity,
-          height: 200, // Altura fixa para o banner
-          // Caso a imagem não exista, o Flutter mostrará um placeholder de erro, como na sua outra imagem.
+          height: 200,
         ),
         const SizedBox(height: 10.0),
 
@@ -292,7 +267,7 @@ class _IngressosState extends State<Ingressos> {
     );
   }
 
-  // Contêiner de Informação (Local ou Data) - Mantida
+  // Contêiner de Informação (Local ou Data)
   Widget _buildInfoContainer({
     required IconData icon,
     required String text,
@@ -303,7 +278,7 @@ class _IngressosState extends State<Ingressos> {
       child: Container(
         padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-          color: const Color(0xFF212121), // Cor de fundo cinza escuro
+          color: const Color(0xFF212121),
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(color: color, width: 2),
         ),
@@ -323,7 +298,7 @@ class _IngressosState extends State<Ingressos> {
     );
   }
 
-  // Seção de Compra de Ingressos (Com a lógica dinâmica) - Mantida
+  // Seção de Compra de Ingressos (Com a lógica dinâmica)
   Widget _buildTicketPurchaseSection(Color primaryRed) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -370,11 +345,11 @@ class _IngressosState extends State<Ingressos> {
               ),
             ),
 
-            // Corpo da Tabela de Ingresso (Fundo cinza escuro)
+            // Corpo da Tabela de Ingresso
             Container(
               padding: const EdgeInsets.all(12.0),
               decoration: const BoxDecoration(
-                color: Color(0xFF212121), // Fundo cinza escuro
+                color: Color(0xFF212121),
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(8.0),
                 ),
@@ -453,7 +428,7 @@ class _IngressosState extends State<Ingressos> {
     );
   }
 
-  // 4. Rodapé de Navegação (BottomNavigationBar) - ATUALIZADA
+  // 4. Rodapé de Navegação (BottomNavigationBar)
   Widget _buildBottomNavBar(Color primaryRed) {
     return Container(
       decoration: BoxDecoration(

@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:projeto_final/view/eventos.dart';
 import 'package:projeto_final/view/ingressos.dart';
 import 'package:projeto_final/view/localizar.dart' hide EventosVer, HomeScreen;
-import 'package:projeto_final/view/eventos_ver.dart';
+import 'package:projeto_final/view/eventos_ver.dart'
+    hide HomeScreen, LocalizarEvento;
 
-// =======================================================
-// VVVVVV IMPORTS E PLACEHOLDERS DE PÁGINAS EXTERNAS VVVVVV
-// =======================================================
-
-// Placeholder para Transporte (Índice 5)
+// A classe Transporte ainda não foi implementada o Placeholder é meramente ilustrativo.
 class PlaceholderPage5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const Scaffold(
@@ -22,7 +19,7 @@ class PlaceholderPage5 extends StatelessWidget {
   );
 }
 
-// O modelo de Evento foi mantido
+// O modelo de Evento
 class Evento {
   final String titulo;
   final String subtitulo;
@@ -39,28 +36,23 @@ class Evento {
   });
 }
 
-// =======================================================
-// VVVVVV CLASSE PRINCIPAL: TELA DE FAVORITOS (LISTAGEM) VVVVVV
-// =======================================================
-
 class Favoritos extends StatefulWidget {
   Favoritos({super.key});
 
-  // Lista de Eventos Destaque (dados conforme as imagens)
+  // Lista de Eventos Destaque
   final List<Evento> destaques = [
     Evento(
-      titulo: 'JOÃOROCK 20ANOS', // Nome conforme a imagem
+      titulo: 'JOÃOROCK 20ANOS',
       subtitulo: '14 de Junho',
       local: 'Shopping Iguatemi, RP',
-      imagemAsset: 'lib/image/joaorock.png', // Caminho do asset
+      imagemAsset: 'lib/image/joaorock.png',
       isDestaque: true,
     ),
     Evento(
       titulo: 'Feira Internacional do Livro',
       subtitulo: '20 a 29 de Junho',
       local: 'Praça XV de Novembro, RP',
-      imagemAsset:
-          'lib/image/feiralivro.png', // Caminho assumido, se não existir use um placeholder
+      imagemAsset: 'lib/image/feiralivro.png',
       isDestaque: false,
     ),
   ];
@@ -70,20 +62,14 @@ class Favoritos extends StatefulWidget {
 }
 
 class _FavoritosState extends State<Favoritos> {
-  // Cores e Constantes
-  static const Color primaryRed = Color(
-    0xFFC8372D,
-  ); // Vermelho da identidade visual
+  static const Color primaryRed = Color(0xFFC8372D);
   static const Color darkBackground = Colors.black;
 
-  // Estado
-  // Índice 2 é "Favoritos" na BottomNavigationBar, que agora é esta tela.
   int _selectedIndex = 2;
 
-  // Lógica de Navegação (MANTIDA)
+  // Lógica de Navegação
   final List<WidgetBuilder> _navigationDestinations = [
     (context) => HomeScreen(),
-    // Para manter a compatibilidade com a indexação anterior (Ingressos), Favoritos é o índice 2.
     (context) => Ingressos(),
     (context) => Favoritos(),
     (context) => LocalizarEvento(),
@@ -148,10 +134,6 @@ class _FavoritosState extends State<Favoritos> {
     );
   }
 
-  // =======================================================
-  // VVVVVV WIDGETS AUXILIARES REFORMATADOS PARA TELA DE FAVORITOS VVVVVV
-  // =======================================================
-
   // AppBar (Barra Superior) - Com Ícone de Perfil e Notificação
   PreferredSize _buildAppBar() {
     return PreferredSize(
@@ -162,13 +144,12 @@ class _FavoritosState extends State<Favoritos> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            // Ícone de Perfil e Título "Favoritos" (Texto da imagem)
             Row(
               children: <Widget>[
                 const Icon(Icons.person, color: Colors.white, size: 28),
                 const SizedBox(width: 8.0),
                 const Text(
-                  'Favoritos', // Texto conforme a imagem
+                  'Favoritos',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -180,9 +161,8 @@ class _FavoritosState extends State<Favoritos> {
             // Logo EVENTOON e Ícone de Notificação
             Row(
               children: <Widget>[
-                // Placeholder para a logo 'EVENTOON'
                 Image.asset(
-                  'lib/image/logo.png', // Assumindo o path
+                  'lib/image/logo.png',
                   height: 30,
                   width: 50,
                   fit: BoxFit.contain,
@@ -222,7 +202,7 @@ class _FavoritosState extends State<Favoritos> {
           ),
           const SizedBox(width: 8.0),
           const Text(
-            'Favoritos', // Texto conforme a imagem
+            'Favoritos',
             style: TextStyle(
               color: primaryRed,
               fontSize: 24,
@@ -239,7 +219,7 @@ class _FavoritosState extends State<Favoritos> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Card(
-        color: darkBackground, // Fundo preto
+        color: darkBackground,
         elevation: 0,
         margin: EdgeInsets.zero,
         child: Column(
@@ -321,7 +301,7 @@ class _FavoritosState extends State<Favoritos> {
     );
   }
 
-  // Rodapé de Navegação (BottomNavigationBar) - Índice 2 (Favoritos) destacado
+  // Rodapé de Navegação (BottomNavigationBar)
   Widget _buildBottomNavBar() {
     return Container(
       decoration: BoxDecoration(
@@ -340,7 +320,7 @@ class _FavoritosState extends State<Favoritos> {
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white70,
         type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex, // Índice 2 (Favoritos) estará destacado
+        currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         elevation: 0,
         items: const [

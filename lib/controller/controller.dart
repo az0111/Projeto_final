@@ -9,6 +9,8 @@ class LoginController {
     return false;
   }
 
+
+
   // Esqueceu a senha
   void forgotPassword(String email) {
     // Aqui você pode implementar envio de e-mail ou redirecionamento

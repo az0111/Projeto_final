@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_final/view/login_page.dart';
 import 'package:projeto_final/view/sobre.dart';
 import '../controller/controller.dart';
-import '../model/user_model.dart';
-//import 'cadastro_view.dart';
+import 'package:projeto_final/model/user_model.dart';
 
 class SenhaPage extends StatefulWidget {
   const SenhaPage({super.key});

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:flut/view/sobre_view.dart';
 import '../controller/controller.dart';
 import '../model/user_model.dart';
 import '../view/eventos.dart';
-//import 'cadastro_view.dart';
 
 class SobrePage extends StatefulWidget {
   const SobrePage({super.key});
@@ -34,11 +32,9 @@ class _SobrePageState extends State<SobrePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Adicionei um SafeArea aqui para evitar que o conteúdo se sobreponha à barra de status
                 SafeArea(
                   child: Column(
                     children: const [
-                      // LOGO (Mantenha o asset original 'lib/image/logo.png')
                       Image(
                         image: AssetImage("lib/image/logo.png"),
                         width:
@@ -69,10 +65,6 @@ class _SobrePageState extends State<SobrePage> {
             ),
           ),
 
-          // <--- LINHA REMOVIDA PARA SUBIR O BOTÃO --->
-          // const SizedBox(height: 20),
-
-          // Corpo do texto sobre o aplicativo
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(
@@ -101,7 +93,7 @@ class _SobrePageState extends State<SobrePage> {
               right: 20,
               top: 0,
               bottom: 40,
-            ), // Ajustado o bottom para empurrar o botão para cima
+            ),
             child: ElevatedButton(
               onPressed: () {
                 // Presumi que 'HomeScreen' é a tela de eventos anterior
