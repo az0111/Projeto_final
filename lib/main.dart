@@ -4,9 +4,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:get_it/get_it.dart';
 import 'controller/controller.dart';
 
-
 final getIt = GetIt.instance;
-
 
 void main() {
   //
@@ -15,13 +13,9 @@ void main() {
   getIt.registerSingleton(LoginController());
 
   runApp(
-    DevicePreview(
-      enabled: true,
-      builder: (context) => const EventoonApp(),
-    ),
+    DevicePreview(enabled: true, builder: (context) => const EventoonApp()),
   );
 }
-
 
 class EventoonApp extends StatelessWidget {
   const EventoonApp({super.key});
