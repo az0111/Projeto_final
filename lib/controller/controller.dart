@@ -74,40 +74,46 @@ class LoginController {
         "uid": cred.user!.uid,
         "criadoEm": DateTime.now(),
       });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Cadastro realizado com sucesso!")),
-      );
-
-      // 3. Redirecionar após cadastrar
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => SobrePage()),
-      );
-
       return true;
-    } on FirebaseAuthException catch (e) {
-      String msg = "Erro ao cadastrar";
-
-      switch (e.code) {
-        case "email-already-in-use":
-          msg = "Este e-mail já está em uso.";
-          break;
-        case "weak-password":
-          msg = "Senha muito fraca. Deve ter no mínimo 6 caracteres.";
-          break;
-        case "invalid-email":
-          msg = "E-mail inválido.";
-          break;
-        default:
-          msg = "Erro: ${e.message}";
-      }
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(msg), backgroundColor: Colors.red));
-
-      return false;
+    } catch (e) {
+      // Mostrar erro
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Erro: $e"), backgroundColor: Colors.red),
+      );
+      return false; // ⚠️ IMPORTANTE
     }
   }
 }
+
+      // 3. Redirecionar após cadastrar
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (_) => SobrePage()),
+      // );
+
+//       return true;
+//     } on FirebaseAuthException catch (e) {
+//       String msg = "Erro ao cadastrar";
+
+//       switch (e.code) {
+//         case "email-already-in-use":
+//           msg = "Este e-mail já está em uso.";
+//           break;
+//         case "weak-password":
+//           msg = "Senha muito fraca. Deve ter no mínimo 6 caracteres.";
+//           break;
+//         case "invalid-email":
+//           msg = "E-mail inválido.";
+//           break;
+//         default:
+//           msg = "Erro: ${e.message}";
+//       }
+
+//       ScaffoldMessenger.of(
+//         context,
+//       ).showSnackBar(SnackBar(content: Text(msg), backgroundColor: Colors.red));
+
+//       return false;
+//     }
+//   }
+// }
