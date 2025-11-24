@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "298418970851",
+    "project_id": "flutterintegrar",
+    "storage_bucket": "flutterintegrar.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298418970851:android:b33a0424acd5e3b1e6e5d6",
+        "android_client_info": {
+          "package_name": "com.example.projeto_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzDKKiHHG_7KzTvO3x8ULcpTN9yGqjVrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
