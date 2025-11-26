@@ -46,8 +46,52 @@ class LoginController {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(msg), backgroundColor: Colors.red));
-
       return false;
+    }
+  }
+
+  // ================= ESQUECEU SENHA =====================
+  Future<void> esqueceuSenha({
+    required BuildContext context,
+    required String email,
+  }) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("E-mail de recuperação enviado com sucesso!"),
+        ),
+      );
+
+      // Aguarda um pouco antes de navegar para evitar conflito com o ciclo de navegação do Flutter.
+      Future.delayed(const Duration(milliseconds: 600), () {
+        if (Navigator.of(context).canPop()) {
+          Navigator.pop(context);
+        }
+      });
+    } on FirebaseAuthException catch (e) {
+      String mensagem;
+      switch (e.code) {
+        case 'invalid-email':
+          mensagem = 'O e-mail informado é inválido.';
+          break;
+        case 'user-not-found':
+          mensagem = 'Nenhum usuário encontrado com este e-mail.';
+          break;
+        default:
+          mensagem = 'Erro: ${e.message}';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(mensagem), backgroundColor: Colors.red),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Erro inesperado: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 
@@ -75,39 +119,30 @@ class LoginController {
         "criadoEm": DateTime.now(),
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Cadastro realizado com sucesso!")),
-      );
-
-      // 3. Redirecionar após cadastrar
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => SobrePage()),
-      );
-
       return true;
-    } on FirebaseAuthException catch (e) {
-      String msg = "Erro ao cadastrar";
-
-      switch (e.code) {
-        case "email-already-in-use":
-          msg = "Este e-mail já está em uso.";
-          break;
-        case "weak-password":
-          msg = "Senha muito fraca. Deve ter no mínimo 6 caracteres.";
-          break;
-        case "invalid-email":
-          msg = "E-mail inválido.";
-          break;
-        default:
-          msg = "Erro: ${e.message}";
-      }
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(msg), backgroundColor: Colors.red));
-
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Erro: $e"), backgroundColor: Colors.red),
+      );
       return false;
     }
+  }
+
+  logout(context) {
+    auth
+        .signOut()
+        .then((resultado) {
+          Navigator.of(context).pushReplacementNamed('login');
+        })
+        .catchError((e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Não foi possível efetuar logout: $e"),
+              backgroundColor: Colors.red,
+            ),
+          );
+
+          // erro(context, 'Não foi possível efetuar logout');
+        });
   }
 }

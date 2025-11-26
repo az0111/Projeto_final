@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_final/view/login_page.dart';
-import 'package:projeto_final/view/sobre.dart';
 import '../controller/controller.dart';
-import 'package:projeto_final/model/user_model.dart';
 
 class SenhaPage extends StatefulWidget {
   const SenhaPage({super.key});
@@ -13,7 +11,6 @@ class SenhaPage extends StatefulWidget {
 
 class _SenhaPageState extends State<SenhaPage> {
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   final LoginController _controller = LoginController();
 
   @override
@@ -30,17 +27,11 @@ class _SenhaPageState extends State<SenhaPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                /*
-                Icon(Icons.hexagon, size: 80, color: Colors.black),
-                SizedBox(height: 10),
-                
-                */
                 Image(
                   image: AssetImage("lib/image/logo.png"),
                   width: 200,
                   height: 200,
                 ),
-
                 Text(
                   "EVENTOON",
                   style: TextStyle(
@@ -51,7 +42,7 @@ class _SenhaPageState extends State<SenhaPage> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "LOGiiiIN",
+                  "Redefinir Senha",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -64,7 +55,7 @@ class _SenhaPageState extends State<SenhaPage> {
 
           const SizedBox(height: 30),
 
-          // Campos de login
+          // Campo para digitar o e-mail
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
@@ -92,7 +83,7 @@ class _SenhaPageState extends State<SenhaPage> {
             ),
           ),
 
-          // Rodapé cadastrar
+          // Botão Enviar
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -113,17 +104,17 @@ class _SenhaPageState extends State<SenhaPage> {
                       ),
                     ),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Mensagem de redifinição de senha enviada com sucesso!",
+                      final email = _emailController.text.trim();
+                      if (email.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Por favor, insira o e-mail."),
+                            backgroundColor: Colors.red,
                           ),
-                        ),
-                      );
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
+                        );
+                        return;
+                      }
+                      _controller.esqueceuSenha(context: context, email: email);
                     },
                     child: const Text(
                       "Enviar",
@@ -142,3 +133,5 @@ class _SenhaPageState extends State<SenhaPage> {
     );
   }
 }
+
+
